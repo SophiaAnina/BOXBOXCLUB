@@ -35,7 +35,10 @@ export default function OnboardingStep3({ route }: any) {
          disabled={loading}
          onPress={() => {
            console.log('Navigating to OnboardingStep4');
-           navigation.navigate('OnboardingStep4');
+           navigation.navigate('OnboardingStep4', {
+             email: route.params?.email,      // Pass email from previous step
+             password: route.params?.password // Pass password from previous step
+           });
          }}
        >
          <Text style={styles.buttonText}>Næste</Text>

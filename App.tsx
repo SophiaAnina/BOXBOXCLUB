@@ -28,16 +28,18 @@ import Question3 from './screens/HvadBetyderFlagene/Question3'
 import Question4 from './screens/HvadBetyderFlagene/Question4';
 import Question5 from './screens/HvadBetyderFlagene/Question5';
 import Result from './screens/HvadBetyderFlagene/Result';
-import AntDesign from '@expo/vector-icons/AntDesign';
+import DataArticles from './screens/Lærringscenter/DataArticles';
+import DataScreen from './screens/Lærringscenter/DataScreen';
 import Foundation from '@expo/vector-icons/Foundation';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import Avatar from './components/Avatar';
-import Læringscenter from './screens/Læringscenter';
-import Stilling from './screens/Stilling/App'
-
+import Læringscenter from './screens/Lærringscenter/Læringscenter';
+import ReglerArticles from './screens/Lærringscenter/ReglerArticles';
+import Leaderboard from './screens/Stilling/screens/LiveRaceScreen';
+import KalenderScreen from './screens/Stilling/screens/Kalender';
+import TeamsStandingScreen from './screens/Stilling/screens/TeamStanding';
 import DriverStandingScreen from './screens/Stilling/screens/DriverStanding';
-
 // Create a navigation ref
 export const navigationRef = createNavigationContainerRef();
 
@@ -66,9 +68,35 @@ function HomeStack() {
       <Stack.Screen name="Question5" component={Question5} />
       <Stack.Screen name="Result" component={Result} />
     
-      <Stack.Screen name="DriverStanding" component={DriverStandingScreen} />
-     
     </Stack.Navigator>
+  );
+}
+
+// Stilling Stack Screens
+const StillingStack = createStackNavigator();
+
+function StillingStackScreen() {
+  return (
+    <StillingStack.Navigator screenOptions={{ headerShown: false }}>
+      <StillingStack.Screen name="Leaderboard" component={Leaderboard} />
+      <StillingStack.Screen name="Kalender" component={KalenderScreen} />
+      <StillingStack.Screen name="TeamStanding" component={TeamsStandingScreen} />
+      <StillingStack.Screen name="DriverStanding" component={DriverStandingScreen} />
+    </StillingStack.Navigator>
+  );
+}
+
+// Læringscenter Stack Screens
+const LæringscenterStack = createStackNavigator();
+
+function LæringscenterStackScreen() {
+  return (
+    <LæringscenterStack.Navigator screenOptions={{ headerShown: false }}>
+      <LæringscenterStack.Screen name="Læringscenter" component={Læringscenter} />
+      <LæringscenterStack.Screen name="ReglerArticles" component={ReglerArticles} />
+      <LæringscenterStack.Screen name="DataArticles" component={DataArticles} />
+      <LæringscenterStack.Screen name="DataScreen" component={DataScreen} />
+    </LæringscenterStack.Navigator>
   );
 }
 
@@ -91,15 +119,15 @@ function MainApp() {
         options={{
           tabBarActiveTintColor:'#CD1F4D',
           tabBarIcon: ({ color }) => <MaterialCommunityIcons name="message-badge" size={32} color={color} /> }} />
-     <Tab.Screen
+      <Tab.Screen
         name="Stlling"
-        component={Stilling}
+        component={StillingStackScreen}
         options={{
           tabBarIcon: ({ color }) => (
             <Foundation
               name="graph-horizontal"
               size={32}
-              color={color} // Use the provided color!
+              color={color}
               style={{ transform: [{ rotate: '-90deg' }] }}
             />
           ),
@@ -122,8 +150,7 @@ function MainApp() {
       }}/>
       <Tab.Screen
         name="Lær' mere"
-        component={Læringscenter}
-        initialParams={{ session }} // Pass session as a prop
+        component={LæringscenterStackScreen}
         options={{
           tabBarIcon: ({ color }) => <MaterialIcons name="collections-bookmark" size={32} color={color} />
         }}
@@ -143,11 +170,25 @@ function StackNavigator() {
       <Stack.Screen name="OnboardingStep2" component={OnboardingStep2} />
       <Stack.Screen name="OnboardingStep3" component={OnboardingStep3} />
       <Stack.Screen name="OnboardingStep4" component={OnboardingStep4} />
-     
       <Stack.Screen name="MessagesScreen" component={MessagesScreen} />
       <Stack.Screen name="Profile" component={ProfileScreen} />
       <Stack.Screen name="ChangeAvatar" component={ChangeAvatar} />
-     
+      <Stack.Screen name="Kalender" component={KalenderScreen} />
+      <Stack.Screen name="Leaderboard" component={Leaderboard} />
+      <Stack.Screen name="DriverStanding" component={DriverStandingScreen} />
+      <Stack.Screen name="TeamStanding" component={TeamsStandingScreen} />
+      <Stack.Screen name='Quiz' component={Quiz} />
+      <Stack.Screen name="HBFStart" component={HBFStart} />
+      <Stack.Screen name='HBFArtikelStart' component={HBFArtikelStart} />
+      <Stack.Screen name="HBFArtikel" component={HBFArtikel} />
+      <Stack.Screen name="Question1" component={Question1} />
+      <Stack.Screen name="Question2" component={Question2} />
+      <Stack.Screen name="Question3" component={Question3} />
+      <Stack.Screen name="Question4" component={Question4} />
+      <Stack.Screen name="Question5" component={Question5} />
+      <Stack.Screen name="Result" component={Result} />
+      
+
     </Stack.Navigator>
   );
 }

@@ -1,25 +1,83 @@
-import React from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
+import { useFonts, DynaPuff_400Regular,DynaPuff_500Medium, DynaPuff_600SemiBold,DynaPuff_700Bold} from "@expo-google-fonts/dynapuff";
+import { AnekDevanagari_400Regular, AnekDevanagari_500Medium, AnekDevanagari_600SemiBold, AnekDevanagari_700Bold, } from "@expo-google-fonts/anek-devanagari";
+import { SpecialGothicExpandedOne_400Regular } from "@expo-google-fonts/special-gothic-expanded-one";
 export default function TeamsStandingScreen() {
     const navigation = useNavigation();
-  const standings = [
-    { position: 'P1', team: 'Mclaren', points: 125 },
-    { position: 'P2', team: 'Redbull', points: 120 },
-    { position: 'P3', team: 'Mercedes', points: 110 },
-    { position: 'P4', team: 'Haas', points: 100 },
-    { position: 'P5', team: 'Racing Bull', points: 90 },
-    { position: 'P6', team: 'Sauber', points: 85 },
-    { position: 'P7', team: 'Ferrari', points: 70 },
-    { position: 'P8', team: 'Williams', points: 65 },
-  ];
+    const [standings, setStandings] = useState([]);
+
+  useEffect(() => {
+    async function fetchTeamStandings() {
+      const response = await fetch('https://ergast.com/api/f1/2024/constructorStandings.json');
+      const data = await response.json();
+      const standings = data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings.map(team => ({
+        position: team.position,
+        team: team.Constructor.name,
+        points: team.points,
+      }));
+      setStandings(standings);
+    }
+    fetchTeamStandings();
+  }, []);
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Live</Text>
+      <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 20, marginBottom: 20, marginTop: 40 }}>
+        <Text style={styles.title}>Live</Text>
+      </View>
+      <View style={{ width: '100%' }}>
+        <View style={styles.Header}>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={{ paddingHorizontal: 10, alignItems: 'center', marginBottom: 20, width: '150%' }}
+        >
+          <TouchableOpacity
+            style={{ backgroundColor: '#112045', borderRadius: 10, paddingVertical: 12, paddingHorizontal: 16, marginRight: 10 }}
+            onPress={() => navigation.navigate('Leaderboard')}
+          >
+            <Text style={{ color: 'white', fontSize: 20 }}>Live fra Miami</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={{ backgroundColor: '#CD1F4D', borderRadius: 10, paddingVertical: 12, paddingHorizontal: 16, marginRight: 10 }}
+            onPress={() => navigation.navigate('DriverStanding')}
+          >
+            <Text style={{ color: 'white', fontSize: 20 }}>Stilling</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={{ backgroundColor: '#112045', borderRadius: 10, paddingVertical: 12, paddingHorizontal: 16, marginRight: 10 }}
+            onPress={() => navigation.navigate('K')}
+          >
+            <Text style={{ color: 'white', fontSize: 20 }}>Live fra Miami</Text>
+          </TouchableOpacity>
+        </ScrollView>
+        </View>
+      </View>
       <Text style={styles.sectionTitle}>Mesterskab</Text>
-      <ScrollView>
+      <ScrollView style={styles.scrollContainer}>
+        <View style={styles.item}>
+           <TouchableOpacity
+            style={{ backgroundColor: '#CD1F4D', borderRadius: 10, paddingVertical: 12, paddingHorizontal: 16, marginRight: 10 }}
+            onPress={() => navigation.navigate('TeamStanding')}
+          >
+            <Text style={{ color: 'white', fontSize: 20 }}>Holdets stilling</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={{ borderRadius: 10, paddingVertical: 12, paddingHorizontal: 16, marginRight: 10 }}
+            onPress={() => navigation.navigate('DriverStanding')}
+          >
+            <Text style={{ color: 'white', fontSize: 20 }}>Kørernes stilling</Text>
+          </TouchableOpacity>
+        </View>
+        
+        <View style={styles.item}>
+          <Text style={styles.position}>Plads</Text>
+          <Text style={styles.teamTitle}>Navn</Text>
+          <Text style={styles.pointsTitle}>Point</Text>
+        </View>
         {standings.map((team, index) => (
           <View key={index} style={styles.item}>
             <Text style={styles.position}>{team.position}</Text>
@@ -33,27 +91,62 @@ export default function TeamsStandingScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { padding: 20, backgroundColor: '#112045', flex: 1 },
+  container: { 
+    flex: 1 
+  },
+  Header: {
+    backgroundColor: 'White',
+    
+  },
   title: {
     fontFamily: "SpecialGothicExpandedOne_400Regular",
     fontSize: 32,
     marginTop: 40,
-    color: "#fff",
+    color: "#1e2c4c",
   },
   sectionTitle: {
     color: "#CD1F4D",
-    fontSize: 24,
+    fontSize: 36,
     marginVertical: 20,
+    marginLeft: 10,
+    fontFamily: "SpecialGothicExpandedOne_400Regular",
+  },
+  scrollContainer: {
+    backgroundColor: '#112045',
+ 
   },
   item: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    backgroundColor: '#1E2C4C',
     padding: 16,
     marginVertical: 6,
-    borderRadius: 10,
+    borderBottomColor: '#CD1F4D',
+    borderBottomWidth: 1,
   },
-  position: { color: '#fff', width: 50 },
-  team: { color: '#fff', flex: 1 },
-  points: { color: '#CD1F4D', width: 50, textAlign: 'right' },
+  position: { 
+    color: '#fff', 
+    fontFamily: "SpecialGothicExpandedOne_400Regular",
+    width: 50 
+  },
+  team: { 
+    color: '#fff', 
+    fontFamily: "AnekDevanagari_400Regular",
+    flex: 1
+  },
+   teamTitle: { 
+    color: '#fff', 
+    fontFamily: "SpecialGothicExpandedOne_400Regular",
+    flex: 1 
+  },
+  pointsTitle: {
+    color: '#fff',
+    fontFamily: "SpecialGothicExpandedOne_400Regular",
+    textAlign: 'right',
+    width: 50,
+  },
+  points: { 
+    color: 'white', 
+    fontFamily: "AnekDevanagari_400Regular",
+    width: 50, 
+    textAlign: 'right' },
 });

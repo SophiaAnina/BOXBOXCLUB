@@ -7,9 +7,9 @@ import { useRoute } from '@react-navigation/native';
 import Frida from '../assets/FridaFart/frida-dæk.svg';
 import RacetrackRed from '../assets/svg/RacetrackRed.svg';
 
-import { useFonts, DynaPuff_400Regular } from '@expo-google-fonts/dynapuff';
-import { AnekDevanagari_400Regular } from '@expo-google-fonts/anek-devanagari';
-import { SpecialGothicExpandedOne_400Regular } from '@expo-google-fonts/special-gothic-expanded-one';
+import { useFonts, DynaPuff_400Regular,DynaPuff_500Medium, DynaPuff_600SemiBold,DynaPuff_700Bold} from "@expo-google-fonts/dynapuff";
+import { AnekDevanagari_400Regular, AnekDevanagari_500Medium, AnekDevanagari_600SemiBold, AnekDevanagari_700Bold, } from "@expo-google-fonts/anek-devanagari";
+import { SpecialGothicExpandedOne_400Regular } from "@expo-google-fonts/special-gothic-expanded-one";
 
 AppState.addEventListener('change', (state) => {
   if (state === 'active') {
@@ -24,7 +24,7 @@ export default function OnboardingStep4({ }) {
   const navigation = useNavigation();
   const [loading, setLoading] = useState(false);
   const route = useRoute();
-  const { email, password } = route.params;
+  const { email, password } = route.params || {}; // fallback to empty object
 
   async function signInWithEmail(email, password) {
     setLoading(true);
@@ -53,7 +53,7 @@ export default function OnboardingStep4({ }) {
   }, [email, password]);
 
   return (
-    <ScrollView style={styles.container}>
+    <View style={styles.container}>
       <View style={styles.header}>
         <TouchableOpacity onPress={() => navigation.navigate('OnboardingStep3')} style={styles.backButton}>
           <AntDesign name="arrowleft" size={24} color="white" />
@@ -64,20 +64,19 @@ export default function OnboardingStep4({ }) {
       </View>
       <Text style={styles.title}>Det var det</Text>
       <Text style={styles.text}>Lad os komme igang! </Text>
-      <View style={[styles.verticallySpaced, styles.mt20]}>
+     
         <TouchableOpacity
           style={styles.button}
           disabled={loading}
-          onPress={() => navigation.navigate('Home')}
+          onPress={signInWithEmail.bind(this, email, password)}
         >
-          <Text style={styles.buttonText}>Næste</Text>
+          <Text style={styles.buttonText}>Til Appen</Text>
         </TouchableOpacity>
         <RacetrackRed />
         <View>
           <Frida />
         </View>
-      </View>
-    </ScrollView>
+    </View>
   );
 }
 
@@ -144,7 +143,6 @@ const styles = StyleSheet.create({
     marginLeft: 'auto',
     marginRight: 'auto',
     textAlign: 'center',
-    fontWeight: 500,
   },
   longText: {
     color: 'white',
@@ -155,16 +153,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: '65%',
   },
-  longText: {
-    maxWidth: 200,
-    marginBottom: 30,
-  },
+  
   button: {
     marginTop: 30,
     marginBottom: 80,
-   
-   
-    paddingVertical: 1,
+    paddingVertical: 10,
+    paddingHorizontal: 40,
+    marginLeft: 60,
+    marginRight: 60,
     backgroundColor: '#CD1F4D',
     borderRadius: 16,
     textAlign: 'center',
@@ -172,13 +168,12 @@ const styles = StyleSheet.create({
   buttonText: {
     color: 'white',
     fontSize: 24,
-    fontWeight: 'bold',
-    fontFamily: 'AnekDevanagari_400Regular',
+    fontFamily: 'AnekDevanagari_600SemiBold',
     textAlign: 'center',
   },
   backButton: {
     borderColor: 'white',
-    borderWidth: 1,
+    borderWidth: 2,
     width: 120,
     paddingVertical: 10,
     marginLeft: 10,
@@ -190,8 +185,7 @@ const styles = StyleSheet.create({
   backButtonText: {
     color: 'white',
     fontSize: 17,
-    fontWeight: 'bold',
-    fontFamily: 'Anek Devanagari',
+    fontFamily: 'AnekDevanagari_600SemiBold',
     justifyContent: 'space-between',
   },
 })

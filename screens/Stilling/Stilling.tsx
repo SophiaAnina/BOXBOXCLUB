@@ -22,8 +22,8 @@ export default function Stilling() {
       >
         <Stack.Screen name="Leaderboard" component={Leaderboard} />
         <Stack.Screen name="Kalender" component={KalenderScreen} />
-        <Stack.Screen name="TeamsStanding" component={TeamsStandingScreen} />
-        <Stack.Screen name="DriversStanding" component={DriversStandingScreen} />
+        <Stack.Screen name="TeamStanding" component={TeamsStandingScreen} />
+        <Stack.Screen name="DriverStanding" component={DriversStandingScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -67,7 +67,7 @@ export default function Quiz() {
             <Text style={styles.Title}>Quiz</Text>
             <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginLeft: 20 }}>
                 <View>
-                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
+                    <View style={{ flexDirection: 'row', alignItems: 'center', }}>
                         <View style={styles.Circle}></View>
                         <Text style={styles.Username}>{username}</Text>
                         
@@ -100,8 +100,8 @@ export default function Quiz() {
                 <Text style={styles.SpørgsmålText}>Back of the grid</Text>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                     <Text style={styles.Spørgsmål}>Hvad Betyder flagene ?</Text>
-                    <TouchableOpacity onPress={() => navigation.navigate('HBFStart')} style={styles.Spørgsmål}>
-                        <Text style={styles.Info}>Info</Text>
+                    <TouchableOpacity onPress={() => navigation.navigate('HBFStart')} style={styles.Info}>
+                        <Text style={styles.InfoText}>Info</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -139,6 +139,7 @@ const styles = StyleSheet.create({
         color: '#112045',
     },
     Circle: {
+        marginLeft: 20,
         width: 27,
         height: 27,
         borderRadius: 50,
@@ -181,7 +182,7 @@ const styles = StyleSheet.create({
         marginLeft:10,
         marginRight:10,
         height: 120,
-        width: '70%',
+       
        
     },
     SpørgsmålText: {
@@ -190,21 +191,35 @@ const styles = StyleSheet.create({
         marginBottom: 8,
         width: 218,
         color: 'white',
+       
     },
     Spørgsmål: {
         fontFamily: "SpecialGothicExpandedOne_400Regular",
         fontSize: 20,
         width: 218,
         color: 'white',
-        borderColor: '#CD1F4D',
-       
+         borderRightColor: '#CD1F4D',
+        borderRightWidth: 6,
+        alignContent: 'center',
     },
     Info: {
         fontFamily: "SpecialGothicExpandedOne_400Regular",
         fontSize: 14,
         color: 'white',
-        borderEndColor:'#CD1F4D',
-        borderEndWidth: 1,
+        borderLeftColor: '#CD1F4D',
+        justifyContent: 'center',
+        alignContent: 'center',
+        marginLeft: 10,
+    },
+    InfoText: {
+        fontFamily: "SpecialGothicExpandedOne_400Regular",
+        fontSize: 14,
+        color: 'white',
+        textAlign: 'center',
+        paddingVertical: 4,
+        paddingHorizontal: 8,
+      
+        borderRadius: 5,
     },
     RemainingXp: {
         fontFamily: " AnekDevanagari_400Regular",

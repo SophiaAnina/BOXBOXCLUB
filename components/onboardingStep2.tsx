@@ -5,9 +5,10 @@ import { Session } from '@supabase/supabase-js';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import { useNavigation } from '@react-navigation/native';
 import { useRoute } from '@react-navigation/native';
-import { useFonts, DynaPuff_400Regular } from '@expo-google-fonts/dynapuff';
-import { AnekDevanagari_400Regular } from '@expo-google-fonts/anek-devanagari';
-import { SpecialGothicExpandedOne_400Regular } from '@expo-google-fonts/special-gothic-expanded-one';
+
+import { useFonts, DynaPuff_400Regular,DynaPuff_500Medium, DynaPuff_600SemiBold,DynaPuff_700Bold} from "@expo-google-fonts/dynapuff";
+import { AnekDevanagari_400Regular, AnekDevanagari_500Medium, AnekDevanagari_600SemiBold, AnekDevanagari_700Bold, } from "@expo-google-fonts/anek-devanagari";
+import { SpecialGothicExpandedOne_400Regular } from "@expo-google-fonts/special-gothic-expanded-one";
 
 import Frida from '../assets/FridaFart/frida-dæk.svg';
 import Logo from '../assets/svg/Logo.svg';
@@ -81,9 +82,9 @@ export default function OnboardingStep2() {
     <TouchableOpacity
   style={[
     styles.questionButton,
-    selectedLevel === 'begynder' && styles.selectedQuestionButton
+    selectedLevel === 'Begynder' && styles.selectedQuestionButton
   ]}
-  onPress={() => setSelectedLevel('begynder')}
+  onPress={() => setSelectedLevel('Begynder')}
 >
   <Text style={styles.buttonText}>Begynder</Text>
 </TouchableOpacity>
@@ -92,9 +93,9 @@ export default function OnboardingStep2() {
         <TouchableOpacity
   style={[
     styles.questionButton,
-    selectedLevel === 'grundforståelse' && styles.selectedQuestionButton
+    selectedLevel === 'Grundforståelse' && styles.selectedQuestionButton
   ]}
-  onPress={() => setSelectedLevel('grundforståelse')}
+  onPress={() => setSelectedLevel('Grundforståelse')}
 >
   <Text style={styles.buttonText}>Grundforståelse</Text>
 </TouchableOpacity>
@@ -102,9 +103,9 @@ export default function OnboardingStep2() {
 <TouchableOpacity
   style={[
     styles.questionButton,
-    selectedLevel === 'ekspert' && styles.selectedQuestionButton
+    selectedLevel === 'Ekspert' && styles.selectedQuestionButton
   ]}
-  onPress={() => setSelectedLevel('ekspert')}
+  onPress={() => setSelectedLevel('Ekspert')}
 >
   <Text style={styles.buttonText}>Ekspert</Text>
 </TouchableOpacity>

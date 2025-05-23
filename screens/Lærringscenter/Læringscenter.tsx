@@ -1,23 +1,39 @@
-import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity, TextInput, ScrollView } from "react-native";
+import React, { useState } from "react";
+import { View, Text, StyleSheet, TouchableOpacity, TextInput, ScrollView, FlatList } from "react-native";
 import { useFonts, AnekDevanagari_400Regular } from "@expo-google-fonts/anek-devanagari";
 import { SpecialGothicExpandedOne_400Regular } from "@expo-google-fonts/special-gothic-expanded-one";
 import { AntDesign } from "@expo/vector-icons";
+import { useNavigation } from '@react-navigation/native';
+import articles from './Data';
 
 export default function Læringscenter() {
+    const navigation = useNavigation();
+    const [search, setSearch] = useState("");
+
+    const handlePress = (article) => {
+        navigation.navigate('ReglerArticles', { article });
+    };
+
+    // Filter articles by title based on search input (case-insensitive)
+    const filteredArticles = articles.filter(article =>
+        article.title.toLowerCase().includes(search.toLowerCase())
+    );
+
     return (
-        <View style={styles.container}>
+        <ScrollView style={styles.container}>
             <Text style={styles.title}>Lær’ mere</Text>
             <View style={styles.inputContainer}>
-            <TextInput
-                style={styles.input}
-                placeholder="Søg her"
-            />
-            <TouchableOpacity style={styles.button}>
-               <AntDesign style={styles.filter} name="filter" size={30} color="#CD1F4D" />
-            </TouchableOpacity>
+                <TextInput
+                    style={styles.input}
+                    placeholder="Søg her"
+                    value={search}
+                    onChangeText={setSearch}
+                />
+                <TouchableOpacity style={styles.button}>
+                    <AntDesign style={styles.filter} name="filter" size={30} color="#CD1F4D" />
+                </TouchableOpacity>
             </View>
-             <View style={styles.scrollContainer}>
+            <View style={styles.scrollContainer}>
                     <ScrollView 
                       horizontal 
                       showsHorizontalScrollIndicator={false}
@@ -26,14 +42,14 @@ export default function Læringscenter() {
                       <TouchableOpacity style={styles.tab}>
                         <Text style={styles.tabText}>Nyt</Text>
                       </TouchableOpacity>
-                      <TouchableOpacity style={styles.tabIndicator}>
-                        <Text style={styles.tabIndicatorText}>Data</Text>
+                      <TouchableOpacity style={styles.tab} onPress={() => navigation.navigate('DataArticles')}>
+                        <Text style={styles.tabText}>Data</Text>
                       </TouchableOpacity>
                       <TouchableOpacity 
-                        style={styles.tab}
+                        style={styles.tabIndicator}
                         onPress={() => navigation.navigate('Læringscenter' )} // Navigate to ProfileScreen
                       >
-                        <Text style={styles.tabText}>Regler</Text>
+                        <Text style={styles.tabIndicatorText}>Regler</Text>
                       </TouchableOpacity>
                       <TouchableOpacity style={styles.tab}>
                         <Text style={styles.tabText}>Kørere</Text>
@@ -41,8 +57,26 @@ export default function Læringscenter() {
                     </ScrollView>
             </View>
             <Text style={styles.title}>Data</Text>
-            
-        </View>
+            <FlatList
+                data={filteredArticles}
+                keyExtractor={(item) => item.id.toString()}
+                renderItem={({ item }) => (
+                  <TouchableOpacity
+                    style={{
+                      backgroundColor: '#CD1F4D',
+                      padding: 16,
+                      borderRadius: 8,
+                      marginBottom: 12,
+                    }}
+                    onPress={() => handlePress(item)}
+                  >
+                    <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 16 }}>
+                      {item.title}
+                    </Text>
+                  </TouchableOpacity>
+                )}
+              />
+        </ScrollView>
     );
 }
 

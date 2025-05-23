@@ -138,7 +138,7 @@ export default function Avatar() {
           <g transform="translate(-20 0)">
             ${face[selectedFace]({}, { face: faceColors[selectedFaceColorIndex] })}
            </g>
-          <g transform="translate(65 115) scale(1.5)>
+          <g transform="translate(65 115) scale(1.5)">
             ${selectedEye}
            </g>
           </g>

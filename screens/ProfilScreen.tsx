@@ -105,8 +105,9 @@ export default function ProfileScreen({profileData}) {
         <TouchableOpacity style={styles.tab}>
           <Text style={{ color: "white", fontSize: 20,fontFamily:'AnekDevanagari_400Regular' }}>Nyheder</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.tab}>
-          <Text style={{ color: "white", fontSize: 20,fontFamily:'AnekDevanagari_400Regular' }}>Indstillinger</Text>
+        <TouchableOpacity style={styles.tab} onPress={() => navigation.navigate("Kalender")}>
+
+          <Text style={{ color: "white", fontSize: 20,fontFamily:'AnekDevanagari_400Regular' }}>Kalender</Text>
         </TouchableOpacity>
       </ScrollView>
       <Text style={styles.ProfilTitle}>Din profil</Text>
