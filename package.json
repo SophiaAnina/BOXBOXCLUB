@@ -29,7 +29,10 @@
     "react-native": "0.79.2",
     "react-native-paper": "^5.14.4",
     "react-native-svg": "^15.11.2",
-    "react-native-svg-transformer": "^1.5.1"
+    "react-native-svg-transformer": "^1.5.1",
+    "react-dom": "19.0.0",
+    "react-native-web": "^0.20.0",
+    "@expo/metro-runtime": "~5.0.4"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
