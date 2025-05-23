@@ -28,14 +28,20 @@ import Question3 from './screens/HvadBetyderFlagene/Question3'
 import Question4 from './screens/HvadBetyderFlagene/Question4';
 import Question5 from './screens/HvadBetyderFlagene/Question5';
 import Result from './screens/HvadBetyderFlagene/Result';
-import DataArticles from './screens/Lærringscenter/DataArticles';
+
 import DataScreen from './screens/Lærringscenter/DataScreen';
+import ReglerArticles from './screens/Lærringscenter/ReglerArticles';
+import DataArticles from './screens/Lærringscenter/DataArticles';
+import ReglerScreen from './screens/Lærringscenter/ReglerScreen';
+import Reglerarticles from './screens/Lærringscenter/Data';
+import DriverScreen from './screens/Lærringscenter/DriverScreen';
+import DriverArticles from './screens/Lærringscenter/DriverArticles';
 import Foundation from '@expo/vector-icons/Foundation';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import Avatar from './components/Avatar';
-import Læringscenter from './screens/Lærringscenter/Læringscenter';
-import ReglerArticles from './screens/Lærringscenter/ReglerArticles';
+
+
 import Leaderboard from './screens/Stilling/screens/LiveRaceScreen';
 import KalenderScreen from './screens/Stilling/screens/Kalender';
 import TeamsStandingScreen from './screens/Stilling/screens/TeamStanding';
@@ -92,10 +98,13 @@ const LæringscenterStack = createStackNavigator();
 function LæringscenterStackScreen() {
   return (
     <LæringscenterStack.Navigator screenOptions={{ headerShown: false }}>
-      <LæringscenterStack.Screen name="Læringscenter" component={Læringscenter} />
+      <LæringscenterStack.Screen name="ReglerScreen" component={ReglerScreen} />
       <LæringscenterStack.Screen name="ReglerArticles" component={ReglerArticles} />
       <LæringscenterStack.Screen name="DataArticles" component={DataArticles} />
       <LæringscenterStack.Screen name="DataScreen" component={DataScreen} />
+      <LæringscenterStack.Screen name="DriverArticles" component={DriverArticles} />
+      <LæringscenterStack.Screen name="DriverScreen" component={DriverScreen} />
+      
     </LæringscenterStack.Navigator>
   );
 }

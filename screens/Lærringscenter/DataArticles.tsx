@@ -1,22 +1,25 @@
-import React from 'react';
-import { View, Text, ScrollView } from 'react-native';
+import React from "react";
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from "react-native";
+export default function DataArticles({ route }) {
+  const article = route?.params?.article;
 
-const DataArticles = ({ route }) => {
-  const { article } = route.params;
+  if (!article) {
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <Text style={{ color: "red", fontSize: 18 }}>Ingen artikel valgt.</Text>
+      </View>
+    );
+  }
 
   return (
-    <ScrollView style={{ flex: 1, padding: 16 }}>
-      <Text style={{ fontSize: 24, fontWeight: 'bold', marginBottom: 16 }}>{article.title}</Text>
+    <View style={{ flex: 1, padding: 20 }}>
+      <Text style={{ fontSize: 24, fontWeight: "bold" }}>{article.title}</Text>
       {article.sections.map((section) => (
-        <View key={section.id} style={{ marginBottom: 12 }}>
-          {section.subtitle ? (
-            <Text style={{ fontWeight: 'bold', fontSize: 18 }}>{section.subtitle}</Text>
-          ) : null}
-          <Text style={{ fontSize: 16 }}>{section.content}</Text>
+        <View key={section.id} style={{ marginVertical: 10 }}>
+          <Text style={{ fontSize: 18, fontWeight: "bold" }}>{section.subtitle}</Text>
+          <Text>{section.content}</Text>
         </View>
       ))}
-    </ScrollView>
+    </View>
   );
-};
-
-export default DataArticles;
+}

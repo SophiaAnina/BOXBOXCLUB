@@ -4,18 +4,19 @@ import { useFonts, AnekDevanagari_400Regular } from "@expo-google-fonts/anek-dev
 import { SpecialGothicExpandedOne_400Regular } from "@expo-google-fonts/special-gothic-expanded-one";
 import { AntDesign } from "@expo/vector-icons";
 import { useNavigation } from '@react-navigation/native';
-import articles from './Data';
+import { F1DriverArticles } from "./Data";
 
-export default function Læringscenter() {
+
+export default function DriverScreen() {
     const navigation = useNavigation();
     const [search, setSearch] = useState("");
 
     const handlePress = (article) => {
-        navigation.navigate('ReglerArticles', { article });
+        navigation.navigate('F1DriverArticles', { article });
     };
 
     // Filter articles by title based on search input (case-insensitive)
-    const filteredArticles = articles.filter(article =>
+    const filteredArticles = F1DriverArticles.filter(article =>
         article.title.toLowerCase().includes(search.toLowerCase())
     );
 
@@ -42,17 +43,17 @@ export default function Læringscenter() {
                       <TouchableOpacity style={styles.tab}>
                         <Text style={styles.tabText}>Nyt</Text>
                       </TouchableOpacity>
-                      <TouchableOpacity style={styles.tab} onPress={() => navigation.navigate('DataArticles')}>
-                        <Text style={styles.tabText}>Data</Text>
+                      <TouchableOpacity style={styles.tabIndicator} onPress={() => navigation.navigate('DataScreen')}>
+                        <Text style={styles.tabIndicatorText}>Data</Text>
                       </TouchableOpacity>
                       <TouchableOpacity 
-                        style={styles.tabIndicator}
-                        onPress={() => navigation.navigate('Læringscenter' )} // Navigate to ProfileScreen
+                        style={styles.tab}
+                        onPress={() => navigation.navigate('ReglerScreen' )} // Navigate to ReglerScreen
                       >
-                        <Text style={styles.tabIndicatorText}>Regler</Text>
+                        <Text style={styles.tabText}>Regler</Text>
                       </TouchableOpacity>
-                      <TouchableOpacity style={styles.tab}>
-                        <Text style={styles.tabText}>Kørere</Text>
+                      <TouchableOpacity style={styles.tabIndicator} onPress={() => navigation.navigate('DriverScreen')}>
+                        <Text style={styles.tabIndicatorText}>Kørere</Text>
                       </TouchableOpacity>
                     </ScrollView>
             </View>

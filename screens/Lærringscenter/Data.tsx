@@ -1,6 +1,6 @@
-import React from "react";
+import React from "react"
 
-const articles = [
+const Reglerarticles = [
   {
     id: 1,
     title: "Regler for Sprint Race i Formel 1",
@@ -164,7 +164,7 @@ const articles = [
   }
 ];
 
-const raceDataArticles = [
+const DataArticles = [
   {
     id: 1,
     title: "Hurtigste Banerekorder i Formel 1",
@@ -332,7 +332,57 @@ const raceDataArticles = [
     ]
   }
 ];
+const F1DriverArticles = [
+  {
+    id: 1,
+    title: "Lewis Hamilton: En Formel 1-legende",
+    sections: [
+      {
+        id: "begyndelsen",
+        subtitle: "Tidlige år",
+        content: `Lewis Hamilton begyndte at køre gokart som otteårig og blev hurtigt bemærket af McLaren. I 2007 debuterede han i Formel 1 og imponerede med en andenplads i mesterskabet allerede i sin første sæson.`
+      },
+      {
+        id: "meritter",
+        subtitle: "Titler og rekorder",
+        content: `Hamilton har vundet 7 verdensmesterskaber og har flest Grand Prix-sejre og pole positions nogensinde. Han er kendt for sin evne i regnvejrsløb og stærke kvalifikationer.`
+      }
+    ]
+  },
+  {
+    id: 2,
+    title: "Max Verstappen: Den Nye Konge af Formel 1",
+    sections: [
+      {
+        id: "tidlig-karriere",
+        subtitle: "Rekordtidlig debut",
+        content: `Max Verstappen debuterede som 17-årig i Formel 1 i 2015 og blev den yngste løbsvinder i historien ved Spaniens Grand Prix 2016.`
+      },
+      {
+        id: "dominans",
+        subtitle: "Ny dominans",
+        content: `Verstappen har domineret sporten siden 2021 og vundet tre verdensmesterskaber i træk. Han er kendt for sin aggressive kørestil og uovertrufne kontrol.`
+      }
+    ]
+  },
+  {
+    id: 3,
+    title: "Fernando Alonso: Mesterens Comeback",
+    sections: [
+      {
+        id: "karriere",
+        subtitle: "Tidlige triumfer",
+        content: `Alonso blev verdensmester i 2005 og 2006 med Renault og brød dermed Michael Schumachers dominans.`
+      },
+      {
+        id: "come-back",
+        subtitle: "Comeback og nutid",
+        content: `Efter en pause fra sporten vendte Alonso tilbage i 2021 og kører nu for Aston Martin, hvor han stadig viser storform.`
+      }
+    ]
+  }
+];
 
 
-export default articles;
-export { raceDataArticles };
+export default Reglerarticles;
+export { DataArticles, F1DriverArticles };
